@@ -1,0 +1,52 @@
+<span class="window-title hide"></span>
+<% _.each(news, function(newsItem) { %>
+<h1>Novinky <sup><sub><small>(<%= newsItem.date %>)</small></sub></sup></h1>
+
+<% function news_GalleryItemMarkup(galleryId, item) { %>
+<li><a class="thumbnail" href="/<%= galleriesPath %>/<%= galleryId %>/<%= item.id %>"
+		><img width="<%= item.thumbnail.width %>" height="<%= item.thumbnail.height %>" onerror="onThumbnailLoadError(this)"
+			alt="<%= item.title %>"
+			title="<%= item.title %>"
+			src="/<%= item.thumbnail.path %>"></a>
+</li>
+<% } %>
+
+<% _.each(newsItem.newGalleries, function(gallery) { %>
+<h3>Nová gallerie <a href="/<%= galleriesPath %>/<%= gallery.id %>"><%= gallery.title %></a></h3>
+<div class="gallery-items">
+	<div class="row">
+		<ul class="thumbnails">
+			<% _.each(gallery.items, function(item) { %>
+				<% news_GalleryItemMarkup(gallery.id, item); %>
+			<% }); %>
+		</ul>
+	</div>
+	<% if (gallery.notListedItemsCount > 0) { %>
+	<div class="extra-items">... a <%= gallery.notListedItemsCount %> dalších položek.</div>
+	<% } %>
+	<% if (gallery.items.lenght + gallery.notListedItemsCount == 0) { %>
+	<div class="extra-items">Galerie je zatím prázdná.</div>
+	<% } %>
+</div>
+<% }); %>
+
+<% _.each(newsItem.modifiedGalleries, function(gallery) { %>
+<h3>Změněna gallerie <a href="/<%= galleriesPath %>/<%= gallery.id %>"><%= gallery.title %></a></h3>
+<div class="gallery-items">
+	<div class="row">
+		<ul class="thumbnails">
+			<% _.each(gallery.items, function(item) { %>
+				<% news_GalleryItemMarkup(gallery.id, item); %>
+			<% }); %>
+		</ul>
+	</div>
+	<% if (gallery.notListedItemsCount > 0) { %>
+	<div class="extra-items">... a <%= gallery.notListedItemsCount %> dalších položek.</div>
+	<% } %>
+	<% if (gallery.removedItemsCount > 0) { %>
+	<div class="extra-items">Odebráno <%= gallery.removedItemsCount %> položek.</div>
+	<% } %>
+</div>
+<% }); %>
+
+<% }); %>

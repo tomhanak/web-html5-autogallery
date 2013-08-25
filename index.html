@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="cs" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="cs" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="cs" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="cs" class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<!--meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"--><!-- Configured in .htaccess -->
+
+		<title>T.O.M.ův web</title>
+
+		<meta name="author" content="Tomáš Hanák">
+		<meta name="description" content="T.O.M.ův osobní web">
+		<meta name="keywords" content="T.O.M.,Hanák,Hanákovi,Galerie">
+		<!--meta name="viewport" content="width=device-width"-->
+		<!--meta name="viewport" content="width=device-width, initial-scale=1.0"-->
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
+		<link rel="alternate" type="application/rss+xml" title="T.O.M.ův web - RSS" href="/site-metadata/rss.xml">
+
+		<link href="http://fonts.googleapis.com/css?family=Audiowide&amp;subset=latin,latin-ext&amp;effect=3d-float" rel="stylesheet" type="text/css">
+
+		<link rel="stylesheet" href="/css/normalize-1.1.0.min.css">
+		<link rel="stylesheet" href="/css/bootstrap-3.0.0rc1.min.css">
+		<link rel="stylesheet" href="/css/bootstrap-glyphicons-1.0.0.css">
+
+		<link rel="stylesheet" href="/css/main.css">
+
+		<script data-main="/js/main" src="/js/libs/require-2.1.8.min.js"></script>
+
+		<script src="/js/libs/modernizr-2.6.2.min.js"></script>
+		<script src="/js/libs/respond-1.1.0.min.js"></script>
+	</head>
+	<body>
+		<!--[if lt IE 7]>
+			<p class="chromeframe">You are using an <strong>outdated</strong> browser.
+			Please <a href="http://browsehappy.com/">upgrade your browser</a>
+			or <a href="http://www.google.com/chromeframe/?redirect=true">activate
+			Google Chrome Frame</a> to improve your experience.</p>
+		<![endif]-->
+
+		<div class="body-4-sticky-footer-container scroll-button-container">
+
+			<div class="header-container">
+				<header class="wrapper clearfix">
+					<h1 class="title font-effect-3d-float"><a class="document-title-base" href="#">T.O.M.ův web</a></h1>
+					<nav>
+						<ul>
+							<li><a href="#galleries">Galerie</a></li>
+							<li><a href="#projects">Projekty</a></li>
+							<li><a href="#japanese">日本語</a></li>
+						</ul>
+					</nav>
+				</header>
+			</div> <!-- .header-container -->
+
+			<div class="main-container">
+				<div class="main wrapper clearfix">
+					<div class="tab-content">
+						<div id="news" class="tab-pane fade"></div>
+						<div id="galleries" class="tab-pane fade"></div>
+						<div id="projects" class="tab-pane fade"></div>
+						<div id="japanese" class="tab-pane fade"></div>
+					</div> <!-- .tab-content -->
+				</div> <!-- .main -->
+			</div> <!-- .main-container -->
+
+			<div class="push-4-sticky-footer-container"></div>
+		</div>
+		<div class="footer-container">
+			<footer class="wrapper">
+				<p><a class="rss" href="/site-metadata/rss.xml"><img src="/img/rss.png" alt="RSS" title="RSS" style="width:1.2em;height:1.2em;"></a>
+					Copyright © 2013,
+					<a href="mailto:tomas.hanak@centrum.cz?subject=Web:" target="_blank">T.O.M.&nbsp;<span class="glyphicon glyphicon-envelope"></span></a></p>
+				<p>Powered by
+					<a href="http://www.w3.org/TR/html5/" target="_blank"><img src="/img/html5.png" alt="HTML5" title="HTML5" style="width:1.2em;height:1.2em;"></a>
+					&amp;
+					<a href="http://www.w3.org/Style/CSS/" target="_blank"><img src="/img/css3.png" alt="CSS3" title="CSS3" style="width:1.2em;height:1.2em;"></a></p>
+			</footer>
+		</div> <!-- .footer-container -->
+
+		<div id="galleryOverlay" class="gallery-overlay"></div>
+
+		<script src="/js/functions.js"></script>
+		<!--script src="/js/scroll-buttons.js"></script-->
+
+		<script> // Google analytics - keep it last
+			var _gaq=[['_setAccount','UA-21693355-1'],['_trackPageview']];
+			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+			//g.src=('https:'==location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';
+			g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+			s.parentNode.insertBefore(g,s)}(document,'script'));
+		</script>
+
+	</body>
+</html>
