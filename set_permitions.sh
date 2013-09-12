@@ -8,4 +8,4 @@ chown -R root:http .
 #find . -type f -exec chmod u=rw,g=r,o= {} \;
 find . -type d -exec chmod u=rwx,g=rwx,o= {} \;
 find . -type f -exec chmod u=rw,g=rw,o= {} \;
-#chmod u=rwx,g=,o= $0
+chmod u=rwx,g=,o= $0
