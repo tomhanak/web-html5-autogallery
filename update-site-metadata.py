@@ -39,7 +39,7 @@ except ImportError:
 #WebProductionMode = False
 WebProductionMode = True
 WebTitle = 'T.O.M.ův web'
-WebLocation = 'http://beta.tomovo.cz' if WebProductionMode else 'http://localhost:8000'
+WebLocation = 'http://www.tomovo.cz' if WebProductionMode else 'http://localhost:8000'
 
 #** Main locations
 SiteData = 'site-data'
