@@ -393,12 +393,14 @@ body {
 	opacity: 0;
 	filter: alpha(opacity=0);
 }
-.gallery-overlay .previous:focus,
-.gallery-overlay .next:focus,
 .gallery-overlay .previous:hover,
 .gallery-overlay .next:hover {
 	opacity: 0.4;
 	filter: alpha(opacity=40);
+}
+.gallery-overlay .previous:focus,
+.gallery-overlay .next:focus {
+	outline: none;
 }
 .gallery-overlay .previous {
 	left: 0;
