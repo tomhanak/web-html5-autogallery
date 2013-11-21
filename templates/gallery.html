@@ -1,29 +1,31 @@
 <h1><span class="window-title hide">Galerie | <%= gallery.title %></span><%= gallery.title %></h1>
-<div class="gallery-filter accordion-group">
-	<div class="accordion-heading">
-		<a class="accordion-toggle" data-toggle="collapse" data-target="#gallery<%= gallery.id %> .body"
-			><span class="glyphicon glyphicon-filter"></span>&nbsp;Filtr <span class="counter">(<span class="visible">?</span>/<span class="total">?</span>)</span></a>
-	</div>
-	<div class="body accordion-body collapse">
-		<div class="accordion-inner">
-			<div class="row">
-				<button class="select-all btn btn-primary" type="button">Vybrat vše</button>
-				<button class="unselect-all btn btn-primary" type="button">Odznačit vše</button>
-				<select class="pattern btn btn-primary">
-					<option value="MatchAtLeastOneTag" selected="selected">Odpovídá alespoň jeden tag</option>
-					<option value="MatchAllTags">Odpovídají všechny tagy</option>
-				</select>
-				<select class="type btn btn-primary">
-					<option value="AllTypes" selected="selected">Všechny typy</option>
-					<option value="Image">Jen obrázky</option>
-					<option value="Video">Jen videa</option>
-					<option value="Audio">Jen audio</option>
-				</select>
-			</div>
-			<div class="tags row">
-				<% for(var tagTitle in gallery.tags) { if (gallery.tags.hasOwnProperty(tagTitle)) { %>
-				<button class="tag btn btn-mini active" value="<%= tagTitle %>"><%= tagTitle %><span class="badge"><%= gallery.tags[tagTitle] %></span></button>
-				<% }} %>
+<div class="gallery-filter panel-group">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<a data-toggle="collapse" data-target="#gallery<%= gallery.id %> .body"
+				><span class="glyphicon glyphicon-filter"></span>&nbsp;Filtr <span class="counter">(<span class="visible">?</span>/<span class="total">?</span>)</span></a>
+		</div>
+		<div class="body panel-collapse collapse">
+			<div class="panel-body">
+				<div class="row">
+					<button class="select-all btn btn-primary" type="button">Vybrat vše</button>
+					<button class="unselect-all btn btn-primary" type="button">Odznačit vše</button>
+					<select class="pattern btn btn-primary">
+						<option value="MatchAtLeastOneTag" selected="selected">Odpovídá alespoň jeden tag</option>
+						<option value="MatchAllTags">Odpovídají všechny tagy</option>
+					</select>
+					<select class="type btn btn-primary">
+						<option value="AllTypes" selected="selected">Všechny typy</option>
+						<option value="Image">Jen obrázky</option>
+						<option value="Video">Jen videa</option>
+						<option value="Audio">Jen audio</option>
+					</select>
+				</div>
+				<div class="tags row">
+					<% for(var tagTitle in gallery.tags) { if (gallery.tags.hasOwnProperty(tagTitle)) { %>
+					<button class="tag btn btn-mini active" value="<%= tagTitle %>"><%= tagTitle %><span class="badge"><%= gallery.tags[tagTitle] %></span></button>
+					<% }} %>
+				</div>
 			</div>
 		</div>
 	</div>
