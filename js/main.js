@@ -26,8 +26,7 @@ require.config({
 		underscore: 'libs/underscore-1.5.1.min',
 		backbone: 'libs/backbone-1.0.0.min',
 		text: 'libs/text.min',
-		//bootstrap: 'libs/bootstrap-2.3.2',
-		bootstrap: 'libs/bootstrap-3.0.0rc1',
+		bootstrap: 'libs/bootstrap-3.0.2',
 		rss: 'rss',
 		scroll_buttons: 'scroll-buttons',
 
