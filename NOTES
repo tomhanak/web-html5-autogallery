@@ -1,3 +1,6 @@
 Temporary web server:
 	python2: python -m SimpleHTTPServer
 	python3: python -m http.server 8000
+
+sshfs tom@server:/usr/share/webapps/web-html5/site-data/galleries site-data/galleries
+sshfs -o nonempty tom@server:/usr/share/webapps/web-html5/site-metadata site-metadata
