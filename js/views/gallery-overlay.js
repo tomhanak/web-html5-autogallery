@@ -173,23 +173,26 @@ define([
 						// mp4 source has to be first to work on iPad
 						.append($('<source>')
 							.attr({
-								type: 'video/mp4; codecs=\'avc1, mp4a\'',
+								//type: 'video/mp4; codecs=\'avc1, mp4a\'',
+								type: 'video/mp4',
 								src: '/' + base + '.mp4',
 							})
 						)
 						.append($('<source>')
 							.attr({
-								type: 'video/ogg; codecs=\'theora, vorbis\'',
+								//type: 'video/ogg; codecs=\'theora, vorbis\'',
+								type: 'video/ogg',
 								src: '/' + base + '.ogv',
 							})
 						)
 						.append($('<source>')
 							.attr({
-								type: 'video/webm; codecs=\'vp8, vorbis\'',
+								//type: 'video/webm; codecs=\'vp8, vorbis\'',
+								type: 'video/webm',
 								src: '/' + base + '.webm',
 							})
 						)
-						.append('Your browser does not support the video tag.')
+						.append('Your browser does not support the HTML5 Video element.')
 					);
 					break;
 				}
@@ -219,11 +222,12 @@ define([
 						)
 						.append($('<source>')
 							.attr({
-								type: 'audio/ogg; codecs=\'vorbis\'',
+								//type: 'audio/ogg; codecs=\'vorbis\'',
+								type: 'audio/ogg',
 								src: '/' + base + '.ogg',
 							})
 						)
-						.append('Your browser does not support the audio tag.')
+						.append('Your browser does not support the HTML5 Audio element.')
 					);
 					break;
 				}
