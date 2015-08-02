@@ -4,7 +4,8 @@
 	<ul class="thumbnails">
 		<% _.each(galleries, function(gallery){ %>
 		<li><a class="thumbnail" href="/<%= galleriesPath %>/<%= gallery.id %>"
-				><img width="<%= gallery.lastItem.thumbnail.width %>" height="<%= gallery.lastItem.thumbnail.height %>" onerror="onThumbnailLoadError(this)"
+				><img style="width:<%= gallery.lastItem.thumbnail.width %>px;height:<%= gallery.lastItem.thumbnail.height %>px;"
+					onerror="onThumbnailLoadError(this)"
 					alt="<%= gallery.lastItem.title %>"
 					title="<%= gallery.lastItem.title %>"
 					src="/<%= gallery.lastItem.thumbnail.path %>"

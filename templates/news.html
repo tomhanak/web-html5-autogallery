@@ -4,7 +4,8 @@
 
 <% function news_GalleryItemMarkup(galleryId, item) { %>
 <li><a class="thumbnail" href="/<%= galleriesPath %>/<%= galleryId %>/<%= item.id %>"
-		><img width="<%= item.thumbnail.width %>" height="<%= item.thumbnail.height %>" onerror="onThumbnailLoadError(this)"
+		><img style="width:<%= item.thumbnail.width %>px;height:<%= item.thumbnail.height %>px;"
+			onerror="onThumbnailLoadError(this)"
 			alt="<%= item.title %>"
 			title="<%= item.title %>"
 			src="/<%= item.thumbnail.path %>"></a>
