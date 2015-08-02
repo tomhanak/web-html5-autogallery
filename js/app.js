@@ -20,8 +20,8 @@
 *******************************************************************************/
 
 define([
-	'jquery', 
-	'underscore', 
+	'jquery',
+	'underscore',
 	'backbone',
 	'router',
 	'rss',
@@ -37,7 +37,7 @@ define([
 		});
 	};
 
-	return { 
+	return {
 		initialize: initialize,
 	};
 });
