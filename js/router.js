@@ -28,14 +28,12 @@ define([
 	'views/gallery',
 	'views/gallery-overlay',
 	'views/projects',
-	'views/japanese',
-], function($, _, Backbone, NewsView, GalleriesView, GalleryView, GalleryOverlayView, ProjectsView, JapaneseView) {
+], function($, _, Backbone, NewsView, GalleriesView, GalleryView, GalleryOverlayView, ProjectsView) {
 	var Router = Backbone.Router.extend({
 		routes: {
 			'galleries': 'showGalleries',
 			'galleries/:galleryId(/:itemId)': 'showGallery',
 			'projects': 'showProjects',
-			'japanese': 'showJapanese',
 
 			// Default route
 			'*path': 'showNews',
@@ -50,7 +48,6 @@ define([
 		var galleryViews = [];
 		var galleryOverlayView = null;
 		var projectsView = null;
-		var japaneseView = null;
 
 		var updateWindowTitle = function($element) {
 			var $titleElement = $element.find('.window-title');
@@ -249,35 +246,13 @@ define([
 			}
 		});
 
-		router.on('route:showJapanese', function() {
-			hideGalleryOverlay();
-			var selector = '#japanese';
-			if (japaneseView == null) {
-				var options = {
-					el: selector,
-					onReady: function() {
-						G_initSubPage(japaneseView.$el);
-						showTabPane(japaneseView.$el);
-					},
-					onError: function() {
-						delete japaneseView;
-						router.navigate('', { trigger: true, replace: true });
-					},
-				};
-				japaneseView = new JapaneseView(options);
-			}
-			else {
-				showTabPane(japaneseView.$el);
-			}
-		});
-
 		Backbone.history.start({ pushState: false });
 		//Backbone.history.start({ pushState: true });
 
 		// Backbone.history._hasPushState used around to check whether to prepend # for URLs or not
 	};
 
-	return { 
+	return {
 		initialize: initialize,
 	};
 });

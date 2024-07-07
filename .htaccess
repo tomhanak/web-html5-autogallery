@@ -89,7 +89,7 @@ ErrorDocument 404 /404.html
 # Use, if installed, Google Chrome Frame.
 
 <IfModule mod_headers.c>
-    Header set X-UA-Compatible "IE=edge,chrome=1"
+    Header set X-UA-Compatible "IE=edge"
     # `mod_headers` can't match based on the content-type, however, we only
     # want to send this header for HTML pages and not for the other resources
     <FilesMatch "\.(appcache|crx|css|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|otf|pdf|png|safariextz|svg|svgz|ttf|vcf|webapp|webm|webp|woff|xml|xpi)$">
@@ -255,12 +255,12 @@ AddDefaultCharset utf-8
 #    RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
 #    RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 #</IfModule>
-<IfModule mod_rewrite.c>
-    RewriteCond %{HTTPS} !=on
-    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-    RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
-    RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-</IfModule>
+#<IfModule mod_rewrite.c>
+#    RewriteCond %{HTTPS} !=on
+#    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+#    RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+#    RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+#</IfModule>
 
 
 # ##############################################################################
@@ -334,10 +334,10 @@ AddDefaultCharset utf-8
 # prevent `https://www.example.com` when your certificate only allows
 # `https://secure.example.com`.
 
-#<IfModule mod_rewrite.c>
-#    RewriteCond %{SERVER_PORT} !^443
-#    RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
-#</IfModule>
+<IfModule mod_rewrite.c>
+    RewriteCond %{SERVER_PORT} !^443
+    RewriteRule ^ https://www.tomovo.cz%{REQUEST_URI} [R=301,L]
+</IfModule>
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -351,7 +351,9 @@ AddDefaultCharset utf-8
 # http://www.html5rocks.com/en/tutorials/security/transport-layer-security/
 
 <IfModule mod_headers.c>
-    Header set Strict-Transport-Security max-age=16070400;
+#    Header set Strict-Transport-Security max-age=16070400;
+#    Header set Strict-Transport-Security max-age=16070400; includeSubDomains; env=HTTPS
+    Header always set Strict-Transport-Security "max-age=16070400; includeSubDomains;"
 </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -566,3 +568,9 @@ FileETag None
 
 # pass the default character set 
 AddDefaultCharset utf-8
+
+<ifModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+    RewriteRule .* - [F]
+</ifModule>
