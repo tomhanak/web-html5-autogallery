@@ -218,7 +218,7 @@ class MediaItem(dict):
 
 def mediaType(fileExt):
 	ImageExts = ['.jpg', '.jpeg', '.png']
-	VideoExts = ['.avi', '.mp4', '.ogv', '.webm', '.mov']
+	VideoExts = ['.avi', '.mp4', '.ogv', '.webm', '.mov', '.mkv']
 	AudioExts = ['.mp3', '.ogg' ]
 	if ImageExts.count(fileExt) > 0:
 		return 'Image'
@@ -575,7 +575,7 @@ def createImageThumbnail(mediaItem, fileName):
 	try:
 		if not argDryRun:
 			image = Image.open(mediaItem['original'], 'r')
-			image.thumbnail(mediaItem['thumbnail'].size(), Image.ANTIALIAS)
+			image.thumbnail(mediaItem['thumbnail'].size(), Image.Resampling.LANCZOS)
 			image.save(fileName, "JPEG")
 		logI('Created "{0}"'.format(fileName))
 	except Exception as ex:
@@ -584,8 +584,8 @@ def createImagePoster(mediaItem, fileName):
 	try:
 		if not argDryRun:
 			image = Image.open(mediaItem['original'], 'r')
-			#image.resize(mediaItem['poster'].size(), Image.ANTIALIAS) # File is too big
-			image.thumbnail(mediaItem['poster'].size(), Image.ANTIALIAS)
+			#image.resize(mediaItem['poster'].size(), Image.Resampling.LANCZOS) # File is too big
+			image.thumbnail(mediaItem['poster'].size(), Image.Resampling.LANCZOS)
 			image.save(fileName, "JPEG")
 		logI('Created "{0}"'.format(fileName))
 	except Exception as ex:
@@ -593,7 +593,11 @@ def createImagePoster(mediaItem, fileName):
 def createAudioMp3(mediaItem, fileName):
 	try:
 		if not argDryRun:
-			command = [ ToolFFmpeg, '-i',  mediaItem['original'], '-vn', '-codec:a', 'libmp3lame', '-b:a', '160k', '-ar', '44100', '-ac', '2', '-f', 'mp3', fileName ]
+			command = [ ToolFFmpeg, '-i', mediaItem['original'],
+						'-vn',
+						'-codec:a', 'libmp3lame',
+						'-b:a', '160k', '-ar', '44100', '-ac', '2',
+						'-f', 'mp3', fileName ]
 			subprocess.check_call(command, stderr = subprocess.DEVNULL)
 		logI('Created "{0}"'.format(fileName))
 	except Exception as ex:
@@ -601,7 +605,11 @@ def createAudioMp3(mediaItem, fileName):
 def createAudioOgg(mediaItem, fileName):
 	try:
 		if not argDryRun:
-			command = [ ToolFFmpeg, '-i',  mediaItem['original'], '-vn', '-codec:a', 'libvorbis', '-b:a', '160k', '-ar', '44100', '-ac', '2', '-f', 'ogg', fileName ]
+			command = [ ToolFFmpeg, '-i', mediaItem['original'],
+						'-vn',
+						'-codec:a', 'libvorbis',
+						'-b:a', '160k', '-ar', '44100', '-ac', '2',
+						'-f', 'ogg', fileName ]
 			subprocess.check_call(command, stderr = subprocess.DEVNULL)
 		logI('Created "{0}"'.format(fileName))
 	except Exception as ex:
@@ -611,10 +619,14 @@ def createVideoThumbnail(mediaItem, fileName):
 		if not argDryRun:
 			scale = videoScaleArg(mediaItem['thumbnail'].size())
 			# Create thumbnail
-			command = [ ToolFFmpeg, '-i',  mediaItem['original'], '-filter:v', scale, '-ss', '00:00:00', '-frames:v', '1', '-r', '1', '-q:v', '1', '-f', 'image2', fileName ]
+			command = [ ToolFFmpeg, '-i', mediaItem['original'],
+						'-filter:v', scale, '-ss', '00:00:00', '-frames:v', '1',
+						'-r', '1', '-q:v', '1',
+						'-f', 'image2', fileName ]
 			subprocess.check_call(command, stderr = subprocess.DEVNULL)
 			# Add video watermark into thumbnail
-			command = [ ToolComposite, '-dissolve', '50%', '-gravity', 'center', VideoThumbnailWatermark, fileName, fileName ]
+			command = [ ToolComposite, '-dissolve', '50%', '-gravity', 'center',
+						VideoThumbnailWatermark, fileName, fileName ]
 			subprocess.check_call(command, stderr = subprocess.DEVNULL)
 		logI('Created "{0}"'.format(fileName))
 	except Exception as ex:
@@ -623,7 +635,10 @@ def createVideoPoster(mediaItem, fileName):
 	try:
 		if not argDryRun:
 			scale = videoScaleArg(mediaItem['poster'].size())
-			command = [ ToolFFmpeg, '-i',  mediaItem['original'], '-filter:v', scale, '-ss', '00:00:00', '-frames:v', '1', '-r', '1', '-q:v', '1', '-f', 'image2', fileName ]
+			command = [ ToolFFmpeg, '-i', mediaItem['original'],
+						'-filter:v', scale, '-ss', '00:00:00', '-frames:v', '1',
+						'-r', '1', '-q:v', '1',
+						'-f', 'image2', fileName ]
 			subprocess.check_call(command, stderr = subprocess.DEVNULL)
 		logI('Created "{0}"'.format(fileName))
 	except Exception as ex:
@@ -632,7 +647,13 @@ def createVideoMp4(mediaItem, fileName):
 	try:
 		if not argDryRun:
 			scale = videoScaleArg(mediaItem['poster'].size())
-			command = [ ToolFFmpeg, '-i',  mediaItem['original'], '-filter:v', scale, '-codec:v', 'libx264', '-b:v', '500k', '-codec:a', 'aac', '-b:a', '160k', '-ar', '44100', '-ac', '2', '-strict', 'experimental', '-f', 'mp4', fileName ]
+			command = [ ToolFFmpeg, '-i', mediaItem['original'],
+						'-filter:v', scale,
+						'-codec:v', 'libx264',
+						'-b:v', '500k',
+						'-codec:a', 'aac',
+						'-b:a', '160k', '-ar', '44100', '-ac', '2',
+						'-f', 'mp4', fileName ]
 			subprocess.check_call(command, stderr = subprocess.DEVNULL)
 		logI('Created "{0}"'.format(fileName))
 	except Exception as ex:
@@ -641,7 +662,13 @@ def createVideoOgv(mediaItem, fileName):
 	try:
 		if not argDryRun:
 			scale = videoScaleArg(mediaItem['poster'].size())
-			command = [ ToolFFmpeg, '-i',  mediaItem['original'], '-filter:v', scale, '-codec:v', 'libtheora', '-b:v', '500k', '-codec:a', 'libvorbis', '-b:a', '160k', '-ar', '44100', '-ac', '2', '-f', 'ogg', fileName ]
+			command = [ ToolFFmpeg, '-i', mediaItem['original'],
+						'-filter:v', scale,
+						'-codec:v', 'libtheora',
+						'-b:v', '500k',
+						'-codec:a', 'libvorbis',
+						'-b:a', '160k', '-ar', '44100', '-ac', '2',
+						'-f', 'ogg', fileName ]
 			subprocess.check_call(command, stderr = subprocess.DEVNULL)
 		logI('Created "{0}"'.format(fileName))
 	except Exception as ex:
@@ -650,7 +677,13 @@ def createVideoWebm(mediaItem, fileName):
 	try:
 		if not argDryRun:
 			scale = videoScaleArg(mediaItem['poster'].size())
-			command = [ ToolFFmpeg, '-i',  mediaItem['original'], '-filter:v', scale, '-codec:v', 'libvpx', '-b:v', '500k', '-codec:a', 'libvorbis', '-b:a', '160k', '-ar', '44100', '-ac', '2', '-f', 'webm', fileName ]
+			command = [ ToolFFmpeg, '-i', mediaItem['original'],
+						'-filter:v', scale,
+						'-codec:v', 'libvpx',
+						'-b:v', '500k',
+						'-codec:a', 'libvorbis',
+						'-b:a', '160k', '-ar', '44100', '-ac', '2',
+						'-f', 'webm', fileName ]
 			subprocess.check_call(command, stderr = subprocess.DEVNULL)
 		logI('Created "{0}"'.format(fileName))
 	except Exception as ex:
