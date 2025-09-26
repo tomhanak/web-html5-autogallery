@@ -1,46 +1,53 @@
-<h1><span class="window-title hide">Galerie | <%= gallery.title %></span><%= gallery.title %></h1>
-<div class="gallery-filter panel-group">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<a data-toggle="collapse" data-target="#gallery<%= gallery.id %> .body"
-				><span class="glyphicon glyphicon-filter"></span>&nbsp;Filtr <span class="counter">(<span class="visible">?</span>/<span class="total">?</span>)</span></a>
+<h1><span class="window-title d-none">Galerie | <%= gallery.title %></span><%= gallery.title %></h1>
+<div class="gallery-filter">
+	<div class="card mt-3 mb-3">
+		<div class="card-header border-0" data-bs-toggle="collapse" data-bs-target="#gallery<%= gallery.id %> .body" role="button">
+			<span class="bi-funnel-fill"></span>
+			Filtr
+			<span class="filter-counter">(<span class="filter-visible">?</span>/<span class="filter-total">?</span>)</span>
 		</div>
-		<div class="body panel-collapse collapse">
-			<div class="panel-body">
-				<div class="row">
-					<button class="select-all btn btn-primary" type="button">Vybrat vše</button>
-					<button class="unselect-all btn btn-primary" type="button">Odznačit vše</button>
-					<select class="pattern btn btn-primary">
+		<div class="body collapse">
+			<div class="card-body">
+				<div class="">
+					<button class="btn btn-primary mb-1 filter-select-all" type="button">Vybrat vše</button>
+					<button class="btn btn-primary mb-1 filter-unselect-all" type="button">Odznačit vše</button>
+					<select class="btn btn-primary mb-1 filter-pattern" id="selectFilterPattern<%= gallery.id %>">
 						<option value="MatchAtLeastOneTag" selected="selected">Odpovídá alespoň jeden tag</option>
 						<option value="MatchAllTags">Odpovídají všechny tagy</option>
 					</select>
-					<select class="type btn btn-primary">
+					<select class="btn btn-primary mb-1 filter-type" id="selectFilterType<%= gallery.id %>">
 						<option value="AllTypes" selected="selected">Všechny typy</option>
 						<option value="Image">Jen obrázky</option>
 						<option value="Video">Jen videa</option>
 						<option value="Audio">Jen audio</option>
 					</select>
 				</div>
-				<div class="tags row">
+				<div class="filter-tags">
 					<% for(var tagTitle in gallery.tags) { if (gallery.tags.hasOwnProperty(tagTitle)) { %>
-					<button class="tag btn btn-mini active" value="<%= tagTitle %>"><%= tagTitle %><span class="badge"><%= gallery.tags[tagTitle] %></span></button>
+					<button class="btn btn-outline-primary mb-1 filter-tag active" value="<%= tagTitle %>"><%= tagTitle %>
+					<span class="badge rounded-pill text-bg-light"><%= gallery.tags[tagTitle] %></span></button>
 					<% }} %>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="gallery-items row">
-	<ul class="thumbnails">
-		<% _.each(items, function(item){ %>
-		<li id="gallery<%= gallery.id %>_<%= item.id %>"
-			><a class="thumbnail" href="/<%= galleriesPath %>/<%= gallery.id %>/<%= item.id %>"
-				><img style="width:<%= item.thumbnail.width %>px;height:<%= item.thumbnail.height %>px;"
-					onerror="onThumbnailLoadError(this)"
-					alt="<%= item.title %>"
-					title="<%= item.title %>"
-					src="/<%= item.thumbnail.path %>"></a>
-		</li>
-		<% }); %>
-	</ul>
+<div class="container gallery-items">
+	<div class="row row-cols-auto">
+		<div class="col gallery-thumbnails">
+			<% _.each(items, function(item){ %>
+			<div class="card d-inline-flex border-0 p-1 m-1 shadow hover-overlay gallery-thumbnail"
+				id="gallery<%= gallery.id %>_<%= item.id %>"
+				><a class="" href="/#<%= galleriesPath %>/<%= gallery.id %>/<%= item.id %>"
+					><img style="width:<%= item.thumbnail.width %>px;height:<%= item.thumbnail.height %>px;"
+						class="card-img"
+						onerror="onThumbnailLoadError(this)"
+						alt="<%= item.title %>"
+						title="<%= item.title %>"
+						src="/<%= item.thumbnail.path %>"
+						><div class="mask"></div></a>
+			</div>
+			<% }); %>
+		</div>
+	</div>
 </div>

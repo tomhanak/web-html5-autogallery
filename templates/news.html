@@ -1,26 +1,30 @@
 <span class="window-title hide"></span>
 <% _.each(news, function(newsItem) { %>
-<h1>Novinky <sup><sub><small>(<%= newsItem.date %>)</small></sub></sup></h1>
+<h1>Novinky <sup class="text-body text-opacity-50"><sub><small>(<%= newsItem.date %>)</small></sub></sup></h1>
 
 <% function news_GalleryItemMarkup(galleryId, item) { %>
-<li><a class="thumbnail" href="/<%= galleriesPath %>/<%= galleryId %>/<%= item.id %>"
+<div class="card d-inline-flex border-0 p-1 m-1 shadow hover-overlay gallery-thumbnail">
+	<a class="gallery-thumbnail-label link-underline link-underline-opacity-0-hover"
+		href="/#<%= galleriesPath %>/<%= galleryId %>/<%= item.id %>"
 		><img style="width:<%= item.thumbnail.width %>px;height:<%= item.thumbnail.height %>px;"
+			class="card-img"
 			onerror="onThumbnailLoadError(this)"
 			alt="<%= item.title %>"
 			title="<%= item.title %>"
-			src="/<%= item.thumbnail.path %>"></a>
-</li>
+			src="/<%= item.thumbnail.path %>"
+			><div class="mask"></div></a>
+</div>
 <% } %>
 
 <% _.each(newsItem.newGalleries, function(gallery) { %>
-<h3>Nová gallerie <a href="/<%= galleriesPath %>/<%= gallery.id %>"><%= gallery.title %></a></h3>
-<div class="gallery-items">
-	<div class="row">
-		<ul class="thumbnails">
+<h3>Nová gallerie <a href="/#<%= galleriesPath %>/<%= gallery.id %>"><%= gallery.title %></a></h3>
+<div class="container gallery-items">
+	<div class="row row-cols-auto">
+		<div class="col gallery-thumbnails">
 			<% _.each(gallery.items, function(item) { %>
 				<% news_GalleryItemMarkup(gallery.id, item); %>
 			<% }); %>
-		</ul>
+		</div>
 	</div>
 	<% if (gallery.notListedItemsCount > 0) { %>
 	<div class="extra-items">... a <%= gallery.notListedItemsCount %> dalších položek.</div>
@@ -32,14 +36,14 @@
 <% }); %>
 
 <% _.each(newsItem.modifiedGalleries, function(gallery) { %>
-<h3>Změněna gallerie <a href="/<%= galleriesPath %>/<%= gallery.id %>"><%= gallery.title %></a></h3>
-<div class="gallery-items">
-	<div class="row">
-		<ul class="thumbnails">
+<h3>Změněna gallerie <a href="/#<%= galleriesPath %>/<%= gallery.id %>"><%= gallery.title %></a></h3>
+<div class="container gallery-items">
+	<div class="row row-cols-auto">
+		<div class="col gallery-thumbnails">
 			<% _.each(gallery.items, function(item) { %>
 				<% news_GalleryItemMarkup(gallery.id, item); %>
 			<% }); %>
-		</ul>
+		</div>
 	</div>
 	<% if (gallery.notListedItemsCount > 0) { %>
 	<div class="extra-items">... a <%= gallery.notListedItemsCount %> dalších položek.</div>

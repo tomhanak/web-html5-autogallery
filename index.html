@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="cs" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="cs" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="cs" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="cs" class="no-js"> <!--<![endif]-->
+<!--html lang="cs" class="no-js"-->
+<html lang="cs">
 	<head>
 		<meta charset="utf-8">
 		<!--meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"--><!-- Configured in .htaccess -->
@@ -12,83 +10,78 @@
 		<meta name="author" content="Tomáš Hanák">
 		<meta name="description" content="T.O.M.ův osobní web">
 		<meta name="keywords" content="T.O.M.,Hanák,Hanákovi,Galerie">
-		<!--meta name="viewport" content="width=device-width"-->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!--meta name="viewport" content="initial-scale=1.0, user-scalable=no"-->
-		<meta name="theme-color" content="#D4A357">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--meta name="theme-color" content="#D4A357"-->
 
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-QG1T8HL2VE"></script>
 		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-		  gtag('config', 'G-QG1T8HL2VE');
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-QG1T8HL2VE');
 		</script>
 
-		<link rel="alternate" type="application/rss+xml" title="T.O.M.ův web - RSS" href="/site-metadata/rss.xml">
+		<link rel="alternate" type="application/rss+xml" href="/site-metadata/rss.xml" title="T.O.M.ův web - RSS">
 
-		<link href="//fonts.googleapis.com/css?family=Audiowide&amp;subset=latin,latin-ext&amp;effect=3d-float" rel="stylesheet" type="text/css">
+		<!--link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Audiowide&amp;subset=latin,latin-ext&amp;effect=3d-float"-->
+		<link rel="stylesheet" href="/css/google-audiowide-font.css">
 
-		<link rel="stylesheet" href="/css/normalize.min.css">
+		<!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"-->
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
-		<!--link rel="stylesheet" href="/css/bootstrap-theme.min.css"-->
+		<!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"-->
+		<link rel="stylesheet" href="/css/bootstrap-icons.min.css">
 
-		<link rel="stylesheet" href="/css/main.css">
+		<!--link rel="stylesheet" href="/css/main.css"-->
+		<link rel="stylesheet" href="/css/style.css">
 
-		<script data-main="/js/main" src="/js/libs/require.min.js"></script>
-
-		<script src="/js/libs/modernizr.min.js"></script>
-		<script src="/js/libs/respond.min.js"></script>
-	</head>
-	<body>
-		<!--[if lt IE 7]>
-			<p class="browsehappy">You are using an <strong>outdated</strong> browser.
-			Please <a href="http://browsehappy.com/">upgrade your browser</a>
-			to improve your experience.</p>
-		<![endif]-->
-
-		<div class="body-4-sticky-footer-container scroll-button-container">
-
-			<div class="header-container">
-				<header class="wrapper clearfix">
-					<h1 class="title font-effect-3d-float"><a class="document-title-base" href="#">T.O.M.ův web</a></h1>
-					<nav>
-						<ul>
-							<li><a href="#galleries">Galerie</a></li>
-							<li><a href="#projects">Projekty</a></li>
-						</ul>
-					</nav>
-				</header>
-			</div> <!-- .header-container -->
-
-			<div class="main-container">
-				<div class="main wrapper clearfix">
-					<div class="tab-content">
-						<div id="news" class="tab-pane fade"></div>
-						<div id="galleries" class="tab-pane fade"></div>
-						<div id="projects" class="tab-pane fade"></div>
-					</div> <!-- .tab-content -->
-				</div> <!-- .main -->
-			</div> <!-- .main-container -->
-
-			<div class="push-4-sticky-footer-container"></div>
-		</div>
-		<div class="footer-container">
-			<footer class="wrapper">
-				<p><a class="rss" href="/site-metadata/rss.xml"><img src="/img/rss.png" alt="RSS" title="RSS" style="width:1.2em;height:1.2em;"></a>
-					Copyright © 2013-2024,
-					<a href="mailto:tomas.hanak@centrum.cz?subject=Web:" target="_blank" rel="noopener">T.O.M.&nbsp;<span class="glyphicon glyphicon-envelope"></span></a></p>
-				<p>Powered by
-					<a href="http://www.w3.org/TR/html5/" target="_blank" rel="noopener"><img src="/img/html5.png" alt="HTML5" title="HTML5" style="width:1.2em;height:1.2em;"></a>
-					&amp;
-					<a href="http://www.w3.org/Style/CSS/" target="_blank" rel="noopener"><img src="/img/css3.png" alt="CSS3" title="CSS3" style="width:1.2em;height:1.2em;"></a></p>
-			</footer>
-		</div> <!-- .footer-container -->
-
-		<div id="galleryOverlay" class="gallery-overlay"></div>
+		<!--script data-main="/js/main" src="https://cdn.jsdelivr.net/npm/requirejs@2.3.7/require.min.js"></script-->
+		<script data-main="/js/main.js" src="/js/libs/require.min.js"></script>
 
 		<script src="/js/functions.js"></script>
-		<!--script src="/js/scroll-buttons.js"></script-->
+	</head>
+	<body>
+		<div class="container header-container clearfix">
+			<header class="">
+				<nav class="p-3 navbar nav-fill navbar-expand-sm bg-primary opacity-75" data-bs-theme="dark">
+					<div class="container-fluid">
+						<a class="navbar-brand fs-2 fw-bold font-effect-3d-float document-title-base link-light link-opacity-75-hover" style="font-family: 'Audiowide', sans-serif" href="#" >T.O.M.ův web</a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="true" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse justify-content-center show" id="navbarNavAltMarkup">
+							<div class="navbar-nav">
+								<a class="nav-link fs-4 fw-bold font-effect-3d-float link-light link-opacity-75-hover" href="#galleries">Galerie</a>
+								<a class="nav-link fs-4 fw-bold font-effect-3d-float link-light link-opacity-75-hover" href="#projects">Projekty</a>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</header>
+		</div>
+
+		<div class="container main-container clearfix">
+			<div class="p-3 main">
+				<div class="tab-content">
+					<div id="news" class="news tab-pane"></div>
+					<div id="galleries" class="galleries tab-pane"></div>
+					<div id="projects" class="projects tab-pane"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container footer-container">
+			<footer class="p-3 mt-3 bg-primary opacity-75 text-white text-center">
+				<a class="link-light link-opacity-75-hover link-underline-opacity-0" href="/site-metadata/rss.xml">
+					<i class="bi bi-rss-fill" title="RSS"></i>
+				</a>
+				Copyright © 2013&ndash;2025,
+				<a class="link-light link-underline link-opacity-75-hover link-underline-opacity-0 link-underline-opacity-75-hover" href="mailto:tomas.hanak@centrum.cz?subject=Web:" target="_blank" rel="noopener">
+					T.O.M.&nbsp;<i class="bi bi-envelope-fill"></i>
+				</a>
+			</footer>
+		</div>
+
+		<div id="galleryOverlay" class="gallery-overlay"></div>
 	</body>
 </html>

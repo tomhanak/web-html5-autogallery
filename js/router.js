@@ -64,40 +64,15 @@ define([
 				scrollToTop = false;
 			}
 			updateWindowTitle($tabPane);
-			// Modified Bootstrap's Tab::activate method
 			var $activeTabPane = $tabPane.parent().find('> .active');
 			var hasActiveTabPane = ($activeTabPane.length > 0);
-			var transition = $.support.transition;
-			if (transition && hasActiveTabPane) {
-				transition = $activeTabPane.hasClass('fade');
-			}
-			var activate = function() {
+			if (!hasActiveTabPane || $activeTabPane[0] !== $tabPane[0]) {
 				$activeTabPane.removeClass('active');
 				$tabPane.addClass('active');
-				if (transition) {
-					$tabPane[0].offsetWidth; // Reflow for transition
-					$tabPane.addClass('in');
-					if (scroll) {
-						var pos = (scrollToTop) ? 0 : $tabPane.offset().top;
-						$('html, body').animate({ scrollTop: pos }, 500);
-					}
-				}
-				else {
-					$tabPane.removeClass('fade');
-				}
-			};
-			if (hasActiveTabPane) {
-				if ($activeTabPane[0] !== $tabPane[0]) {
-					transition
-						? $activeTabPane
-							.one($.support.transition.end, activate)
-							.emulateTransitionEnd(150)
-						: activate();
-					$activeTabPane.removeClass('in');
-				}
-			}
-			else {
-				activate();
+				//if (scroll) {
+				//	var pos = (scrollToTop) ? 0 : $tabPane.offset().top;
+				//	$('html, body').animate({ scrollTop: pos }, 500);
+				//}
 			}
 		};
 		var hideGalleryOverlay = function() {
@@ -196,7 +171,7 @@ define([
 					$('.main-container .tab-content').append(
 						$('<div>')
 						.attr('id', selector.replace('#', ''))
-						.addClass('gallery tab-pane fade')
+						.addClass('gallery tab-pane')
 					);
 					var options = {
 						el: selector,

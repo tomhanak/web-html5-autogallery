@@ -49,7 +49,7 @@ function onPosterLoadError(image) {
 
 function G_initSubPage($subPage) {
 	// Add extra icons for link outside this web
-	$subPage.find('a[target="_blank"]').after('<sup>&nbsp;<span class="glyphicon glyphicon-new-window"></span></sup>');
+	$subPage.find('a[target="_blank"]').after('<sup>&nbsp;<i class="bi bi-box-arrow-up-right"></i></sup>');
 	// Trigger first scroll for scroll-buttons
 	$(window).trigger('scroll');
 }

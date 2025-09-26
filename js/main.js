@@ -21,12 +21,13 @@
 
 // Require.js allows us to configure shortcut alias
 require.config({
+	baseUrl: 'js',
 	paths: {
-		jquery: 'libs/jquery-1.11.0.min',
+		jquery: 'libs/jquery-3.7.1.min',
 		underscore: 'libs/underscore-min',
 		backbone: 'libs/backbone-min',
 		text: 'libs/text.min',
-		bootstrap: 'libs/bootstrap.min',
+		bootstrap: 'libs/bootstrap.bundle.min',
 		rss: 'rss',
 		scroll_buttons: 'scroll-buttons',
 

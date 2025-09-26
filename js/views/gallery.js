@@ -76,51 +76,49 @@ define([
 		},
 		_activate: function() {
 			this.$filter = this.$('.gallery-filter');
-			this.$filter.find('.select-all').on('click', $.proxy(this._checkAllFilterTags, this));
-			this.$filter.find('.unselect-all').on('click', $.proxy(this._uncheckAllFilterTags, this));
-			this.$filter.find('.pattern').on('change', $.proxy(this._updateItemsVisibility, this));
-			this.$filter.find('.type').on('change', $.proxy(this._updateItemsVisibility, this));
-			this.$filter.find('.tags .tag').on('click', $.proxy(function(ev) {
+			this.$filter.find('.filter-select-all').on('click', $.proxy(this._checkAllFilterTags, this));
+			this.$filter.find('.filter-unselect-all').on('click', $.proxy(this._uncheckAllFilterTags, this));
+			this.$filter.find('.filter-pattern').on('change', $.proxy(this._updateItemsVisibility, this));
+			this.$filter.find('.filter-type').on('change', $.proxy(this._updateItemsVisibility, this));
+			this.$filter.find('.filter-tags .filter-tag').on('click', $.proxy(function(ev) {
 				$(ev.target).toggleClass('active');
 				this._updateItemsVisibility();
 			}, this));
-			this.$filterCounterVisible = this.$filter.find('.counter .visible');
-			this.$filterCounterTotal = this.$filter.find('.counter .total');
+			this.$filterCounterVisible = this.$filter.find('.filter-counter .filter-visible');
+			this.$filterCounterTotal = this.$filter.find('.filter-counter .filter-total');
 			this.$filterCounterTotal.html(this.collection.length);
 			this._updateItemsVisibility();
 		},
 		_checkAllFilterTags: function() {
-			this.$filter.find('.tags .tag').addClass('active');
+			this.$filter.find('.filter-tags .filter-tag').addClass('active');
 			this._updateItemsVisibility();
 		},
 		_uncheckAllFilterTags: function() {
-			this.$filter.find('.tags .tag').removeClass('active');
+			this.$filter.find('.filter-tags .filter-tag').removeClass('active');
 			this._updateItemsVisibility();
 		},
 		_setItemVisibility: function(item, visible) {
-			//visible = false;
 			// Set collection item visibility
 			item.attributes['visible'] = visible; // Don't use item.set(...), it would fire change event on model
 			// Set DOM element visibility
 			var itemElementId = '#gallery' + this.gallery.id + '_' + item.get('id');
 			$itemElement = $(itemElementId);
 			if (visible) {
-				$itemElement.removeClass('hide');
+				$itemElement.removeClass('d-none'); // Show
 			}
 			else {
-				$itemElement.addClass('hide');
+				$itemElement.addClass('d-none'); // Hide
 			}
 		},
 		scrollToItem: function(item) {
-			var itemElementId = '#gallery' + this.gallery.id + '_' + item.get('id');
-			$itemElement = $(itemElementId);
-			$('html, body').animate({ scrollTop: $itemElement.offset().top }, 500)
+			var itemElementId = 'gallery' + this.gallery.id + '_' + item.get('id');
+			document.getElementById(itemElementId).scrollIntoView()
 		},
 		_updateItemsVisibility: function() {
-			var pattern = this.$filter.find('.pattern').val();
-			var type = this.$filter.find('.type').val();
+			var pattern = this.$filter.find('.filter-pattern').val();
+			var type = this.$filter.find('.filter-type').val();
 			var selectedTags = [];
-			this.$filter.find('.tags .tag.active').each(function() {
+			this.$filter.find('.filter-tags .filter-tag.active').each(function() {
 				selectedTags.push($(this).val());
 			});
 			this.collection.each($.proxy(function(item) {

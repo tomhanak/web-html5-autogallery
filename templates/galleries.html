@@ -1,16 +1,22 @@
 <h1 class="window-title">Galerie</h1>
 <!--h3>Starší galerie na <a target="_blank" href="http://picasaweb.google.com/tomas.hanak">Google Picasa</a></h3-->
-<div class="row">
-	<ul class="thumbnails">
-		<% _.each(galleries, function(gallery){ %>
-		<li><a class="thumbnail" href="/<%= galleriesPath %>/<%= gallery.id %>"
-				><img style="width:<%= gallery.lastItem.thumbnail.width %>px;height:<%= gallery.lastItem.thumbnail.height %>px;"
-					onerror="onThumbnailLoadError(this)"
-					alt="<%= gallery.lastItem.title %>"
-					title="<%= gallery.lastItem.title %>"
-					src="/<%= gallery.lastItem.thumbnail.path %>"
-				><h5><%= gallery.title %></h5></a>
-		</li>
-		<% }); %>
-	</ul>
+<div class="container gallery-items">
+	<div class="row row-cols-auto">
+		<div class="col gallery-thumbnails">
+			<% _.each(galleries, function(gallery){ %>
+			<div class="card d-inline-flex border-0 p-1 m-1 shadow text-center hover-overlay gallery-thumbnail">
+				<a class="gallery-thumbnail-label link-underline link-underline-opacity-0-hover"
+					href="/#<%= galleriesPath %>/<%= gallery.id %>"
+					><img style="width:<%= gallery.lastItem.thumbnail.width %>px;height:<%= gallery.lastItem.thumbnail.height %>px;"
+						class="card-img-top"
+						onerror="onThumbnailLoadError(this)"
+						alt="<%= gallery.lastItem.title %>"
+						title="<%= gallery.lastItem.title %>"
+						src="/<%= gallery.lastItem.thumbnail.path %>"
+					><h5 class="card-title m-0 p-2 rounded-bottom bg-primary opacity-75 text-white"><%= gallery.title %></h5
+					><div class="mask"></div
+				></a></div>
+			<% }); %>
+		</div>
+	</div>
 </div>

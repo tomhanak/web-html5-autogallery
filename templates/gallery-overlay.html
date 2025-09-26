@@ -1,18 +1,22 @@
-<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
+<div class="modal fade" id="galleryOverlayModal" tabindex="-1" role="dialog" aria-labelledby="galleryOverlayLabel" aria-hidden="true">
+	<div class="modal-dialog modal-fullscreen">
 		<div class="modal-content">
-			<div class="modal-body">
-				<div class="content">
-					<button class="previous" type="button"></button>
-					<button class="next" type="button"></button>
-					<div class="media-container"></div>
+			<div class="modal-header p-3 pt-2 pb-2">
+				<div class="content container-fluid gap-2 p-0 m-0 d-flex justify-content-start">
+					<h5 class="modal-title fs-5 info opacity-50">:: </h5>
+					<h5 class="modal-title fs-5 info media-title text-truncate" id="galleryOverlayLabel"></h5>
 				</div>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-footer">
-				<div class="content">
-					<div class="info title"></div>
-					<div class="info"><span class="counter"><span class="current">?</span>&nbsp;/&nbsp;<span class="total">?</span></span><a class="original" target="_blank">Stáhnout originál</a></div>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<div class="modal-body media-container container-fluid p-0 m-0 text-center"></div>
+			<div class="modal-footer p-3 pt-2 pb-2">
+				<div class="container-fluid gap-2 p-0 m-0 d-flex justify-content-between align-items-center">
+					<div class="filter-counter w-25 text-start">
+						<span class="filter-current">?</span>&nbsp;/&nbsp;<span class="filter-visible">?</span>
+					</div>
+					<button class="media-previous btn btn-outline-secondary w-25 bi bi-caret-left-fill" type="button"></button>
+					<button class="media-next btn btn-outline-secondary w-25 bi bi-caret-right-fill" type="button"></button>
+					<a class="media-original w-25 text-end" target="_blank">Originál</a>
 				</div>
 			</div>
 		</div>
